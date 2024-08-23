@@ -5,6 +5,7 @@ import CartCard from "../components/CartCard"
 import { showRemoveAllModal } from "../features/actions/actionsSlice"
 import { useDispatch, useSelector } from "react-redux"
 import { useCallback } from "react"
+import { calculateTotal } from "../features/cart/cartSlice"
 
 const CartPage = () => {
 
@@ -19,6 +20,7 @@ const CartPage = () => {
     const handleCart = useCallback(() => {
         const inCart = products.filter(item => item.qtyBought > 0)
 
+        dispatch(calculateTotal())
          let percentage = (total * 10) / 100;
          let grandTotal = total + percentage;
 

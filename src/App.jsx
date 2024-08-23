@@ -11,7 +11,6 @@ import CartPage from "./pages/CartPage"
 import CheckoutPage from "./pages/CheckoutPage"
 import { useEffect } from "react"
 import { getProducts } from "./features/cart/cartSlice"
-import { calculateTotal } from "./features/cart/cartSlice"
 import { useSelector, useDispatch } from "react-redux"
 
 
@@ -79,9 +78,7 @@ function App() {
   },[products.length])
 
 
-  useEffect(() => {
-    dispatch(calculateTotal())
-},[products])
+
 
 
 
