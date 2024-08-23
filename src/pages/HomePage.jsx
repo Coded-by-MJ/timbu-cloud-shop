@@ -3,7 +3,7 @@ import NewsLetter from "../components/NewsLetter"
 import SearchPage from "./SearchPage"
 import { useSearch } from "@tanstack/react-router"
 import ProductCard from "../components/ProductCard"
-import { useEffect } from "react"
+import { useEffect, useMemo } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { hideSuccessModal } from "../features/actions/actionsSlice"
 import Spinner from "../components/Spinner"
@@ -16,6 +16,8 @@ const HomePage = () => {
   const dispatch = useDispatch()
   const { products, isLoading } = useSelector((store) => store.cart)
 
+  const stableProducts = useMemo(() => products, [products]);
+
 
   useEffect(() => {
        dispatch(hideSuccessModal())
@@ -27,6 +29,8 @@ const HomePage = () => {
   if (search.search) {
     return <SearchPage query={search.search} />;
   }
+
+
 
 
 
@@ -61,8 +65,17 @@ const HomePage = () => {
                 : (
                           <div className={` grid-cols-auto-mobile md:grid-cols-auto-desktop justify-center grid w-full gap-[24px]`}>
                           {
-                            products.map((product) => (
-                                <ProductCard key={product._id} {...product} />
+                            stableProducts.map((product) => (
+                                <ProductCard key={product._id} 
+                                 _id={product._id}
+                                 name={product.name}
+                                 imagePath={product.imagePath}
+                                 description={product.description}
+                                 qtyBought={product.qtyBought}
+                                 price={product.price}
+                           
+                                
+                                />
                             ))
                           }
                        </div>
