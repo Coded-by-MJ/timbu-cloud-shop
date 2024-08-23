@@ -4,7 +4,6 @@ import NewsLetter from "../components/NewsLetter"
 import CartCard from "../components/CartCard"
 import { showRemoveAllModal } from "../features/actions/actionsSlice"
 import { useDispatch, useSelector } from "react-redux"
-import empty from "../assets/emptycart.png"
 
 const CartPage = () => {
 
