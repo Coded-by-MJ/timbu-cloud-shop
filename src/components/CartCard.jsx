@@ -20,7 +20,7 @@ const CartCard = ({qtyBought, _id, name, imagePath, price}) => {
 
   return (
     <div className="flex gap-6 items-center w-full pr-4">
-        <img src={imagePath} alt={name} className="object-cover flex-shrink-0 w-[169px] lg:w-[210px]  lg:h-[240px]  h-[207px]" />
+        <img src={imagePath} alt={name} className="object-cover flex-shrink-0 w-[169px] lg:w-[210px]  lg:h-[240px]  h-[207px]" loading="lazy"/>
 
 
           <div className="flex gap-6 flex-col w-full">

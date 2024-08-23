@@ -51,7 +51,7 @@ const ProductCard = ({_id, qtyBought, price, imagePath, name, description}) => {
     className="flex flex-col justify-between gap-4 hover:shadow-inner  transition-all   w-full" >
       
            <img src={imagePath} alt={name} 
-           className="md:h-[540px] h-[207px] object-cover w-full " />
+           className="md:h-[540px] h-[207px] object-cover w-full " loading="lazy" />
         
 
         <div className="w-full flex justify-between items-end">

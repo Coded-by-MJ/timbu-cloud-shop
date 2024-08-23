@@ -1,14 +1,14 @@
 
 
 export const productImages  = {
-    'Autume Dress' :  '/images/autume.png',
-    'Slender Gown' :  '/images/gown.png', 
-    'Fanel Turtleneck' :  '/images/fanel.png',
-    'Autume Jumper' :  '/images/jumper.png', 
-    'NeatNexus' :  '/images/neatNexus.png',
-    'Office Runway' :  '/images/office.png', 
-    'Classic Mens Combo' :  '/images/classic.png',
-    'SleekStyle Couture' :  '/images/sleekStyle.png',  
-    'Turtleneck Givenchy' :  '/images/givenchy.png',
+    'Autume Dress' :  '/images/autume.svg',
+    'Slender Gown' :  '/images/gown.svg', 
+    'Fanel Turtleneck' :  '/images/fanel.svg',
+    'Autume Jumper' :  '/images/jumper.svg', 
+    'NeatNexus' :  '/images/neatNexus.svg',
+    'Office Runway' :  '/images/office.svg', 
+    'Classic Mens Combo' :  '/images/classic.svg',
+    'SleekStyle Couture' :  '/images/sleekStyle.svg',  
+    'Turtleneck Givenchy' :  '/images/givenchy.svg',
 }
       
