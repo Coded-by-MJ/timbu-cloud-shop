@@ -3,18 +3,18 @@ import RemoveFromCartIcon from "./RemoveFromCartIcon"
 import { useDispatch } from "react-redux"
 import { removeItemFromCart } from "../features/cart/cartSlice"
 import { alertShow } from "../features/actions/actionsSlice"
-
+import { memo, useCallback } from "react"
 
 
 const CartCard = ({qtyBought, _id, name, imagePath, price}) => {
 
   const dispatch = useDispatch()
 
-  const handleRemoveCartItem = () => {
+  const handleRemoveCartItem = useCallback(() => {
     dispatch(removeItemFromCart(_id))
     dispatch(alertShow(`${name} has been removed from cart`))
 
-  }
+  },[_id, dispatch, name])
 
 
 
@@ -42,4 +42,4 @@ const CartCard = ({qtyBought, _id, name, imagePath, price}) => {
   )
 }
 
-export default CartCard
+export default memo(CartCard)

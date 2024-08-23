@@ -4,6 +4,8 @@ import MobileAddToCart from "./MobileAddToCart"
 import QtyControl from "./QtyControl"
 import RemoveFromCartIcon from "./RemoveFromCartIcon"
 import { useDispatch } from "react-redux"
+import { memo, useCallback } from "react"
+
 
 const ProductCard = ({_id, qtyBought, price, imagePath, name, description}) => {
 
@@ -16,19 +18,19 @@ const ProductCard = ({_id, qtyBought, price, imagePath, name, description}) => {
   
 
 
-  const handleAddToCart = () => {
+  const handleAddToCart = useCallback(() => {
     dispatch(addToCart(_id))
     dispatch(alertShow(`${name} has been added to cart`))
 
-  }  
+  },[_id, name, dispatch])  
   
-  const handleRemoveCartItem = () => {
+  const handleRemoveCartItem = useCallback(() => {
     dispatch(removeItemFromCart(_id))
     dispatch(alertShow(`${name} has been removed from cart`))
 
-  }
+  },[_id, name, dispatch])
 
- const handleAddToCartMobile = () => {
+ const handleAddToCartMobile = useCallback(() => {
     if(qtyBought > 0) {
       dispatch(removeItemFromCart(_id))
       dispatch(alertShow(`${name} has been removed from cart`))
@@ -37,7 +39,7 @@ const ProductCard = ({_id, qtyBought, price, imagePath, name, description}) => {
       dispatch(alertShow(`${name} has been added to cart`))
     }
     
-  }
+  },[_id, name, dispatch, qtyBought])
 
 
 
@@ -93,4 +95,4 @@ const ProductCard = ({_id, qtyBought, price, imagePath, name, description}) => {
   )
 }
 
-export default ProductCard
+export default memo(ProductCard)

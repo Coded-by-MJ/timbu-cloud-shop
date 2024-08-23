@@ -1,3 +1,5 @@
+import { memo } from "react";
+
 
 const OrderCard = ({name, imagePath, qtyBought, price}) => {
 
@@ -26,4 +28,4 @@ const OrderCard = ({name, imagePath, qtyBought, price}) => {
   )
 }
 
-export default OrderCard
+export default memo(OrderCard)

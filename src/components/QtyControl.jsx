@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 import { decreaseQty, increaseQty } from "../features/cart/cartSlice";
-
+import { memo } from "react";
 
 const QtyControl = ({qtyBought, id}) => {
 
@@ -31,4 +31,4 @@ const QtyControl = ({qtyBought, id}) => {
   )
 }
 
-export default QtyControl
+export default memo(QtyControl)
