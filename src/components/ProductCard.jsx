@@ -9,9 +9,6 @@ import { memo, useCallback } from "react"
 
 const ProductCard = ({_id, qtyBought, price, imagePath, name, description}) => {
 
-
-  // const imageUrl = `${import.meta.env.VITE_API_MEDIA}${(image[0])}?key=${import.meta.env.VITE_IMG_KEY}`
-
    const dispatch = useDispatch()
 
 
@@ -22,13 +19,13 @@ const ProductCard = ({_id, qtyBought, price, imagePath, name, description}) => {
     dispatch(addToCart(_id))
     dispatch(alertShow(`${name} has been added to cart`))
 
-  },[_id, name, dispatch])  
+  },[_id, name])  
   
   const handleRemoveCartItem = useCallback(() => {
     dispatch(removeItemFromCart(_id))
     dispatch(alertShow(`${name} has been removed from cart`))
 
-  },[_id, name, dispatch])
+  },[_id, name])
 
  const handleAddToCartMobile = useCallback(() => {
     if(qtyBought > 0) {
@@ -39,12 +36,8 @@ const ProductCard = ({_id, qtyBought, price, imagePath, name, description}) => {
       dispatch(alertShow(`${name} has been added to cart`))
     }
     
-  },[_id, name, dispatch, qtyBought])
+  },[_id, name, qtyBought])
 
-
-  let render = 0
-
-  console.log('render numbers', render += 1)
 
 
 

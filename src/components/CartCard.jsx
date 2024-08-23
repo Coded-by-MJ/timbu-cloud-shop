@@ -14,7 +14,7 @@ const CartCard = ({qtyBought, _id, name, imagePath, price}) => {
     dispatch(removeItemFromCart(_id))
     dispatch(alertShow(`${name} has been removed from cart`))
 
-  },[_id, dispatch, name])
+  },[_id, name])
 
 
 

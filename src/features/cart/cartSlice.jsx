@@ -58,16 +58,16 @@ const cartSlice = createSlice({
     name: "cart",
     initialState,
     reducers: {
-        addToCart: (state, action) => {
+          addToCart: (state, action) => {
+  
             const idNum = action.payload;
             const cartItem = state.products.find(item => item._id === idNum);
              if (!cartItem) return 
-                cartItem.qtyBought = cartItem.qtyBought + 1; 
-              
+                cartItem.qtyBought = cartItem.qtyBought + 1;    
             
         },
         clearCart: (state) => {
-             state.products.map(item => item.qtyBought = 0);
+            state.products.map(item => item.qtyBought = 0);
             
 
         },
