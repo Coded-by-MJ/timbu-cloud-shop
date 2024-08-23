@@ -56,8 +56,8 @@ const HomePage = () => {
                 : (
                           <div className={` grid-cols-auto-mobile md:grid-cols-auto-desktop justify-center grid w-full gap-[24px]`}>
                           {
-                            products.map((product) => (
-                                <ProductCard key={product._id} {...product} />
+                            products.map((product, index) => (
+                                <ProductCard key={index} {...product} />
                             ))
                           }
                        </div>

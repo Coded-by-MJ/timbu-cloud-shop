@@ -72,8 +72,8 @@ const CartPage = () => {
                         {/*cart card*/}
                            <div className="scrollbar-thin scrollbar-track-[#B2B7C2] scrollbar-thumb-navy gap-6 divide-y-[1px] divide-[#B2B7C2] py-2 flex flex-col w-full max-h-[800px] overflow-y-auto">
                                  {
-                                       inCart.map((item) => (
-                                          <CartCard  key={item._id} {...item} />
+                                       inCart.map((item, idx) => (
+                                          <CartCard  key={idx} {...item} />
                                        ))
                                  }
                            </div>
