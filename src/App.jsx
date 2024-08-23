@@ -61,7 +61,7 @@ function App() {
   })
 
 
-  const { products, inCart } = useSelector((store) => store.cart)
+  const { products } = useSelector((store) => store.cart)
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -81,7 +81,7 @@ function App() {
 
   useEffect(() => {
     dispatch(calculateTotal())
-},[inCart])
+},[products])
 
 
 

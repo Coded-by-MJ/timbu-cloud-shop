@@ -4,16 +4,33 @@ import NewsLetter from "../components/NewsLetter"
 import CartCard from "../components/CartCard"
 import { showRemoveAllModal } from "../features/actions/actionsSlice"
 import { useDispatch, useSelector } from "react-redux"
+import { useCallback } from "react"
 
 const CartPage = () => {
 
-   
+
    const dispatch = useDispatch()
-   const { inCart, total  } = useSelector((store) => store.cart)
+   const { total, products  } = useSelector((store) => store.cart)
 
 
-   let percentage = (total * 10) / 100;
-   let grandTotal = total + percentage;
+
+
+
+    const handleCart = useCallback(() => {
+        const inCart = products.filter(item => item.qtyBought > 0)
+
+         let percentage = (total * 10) / 100;
+         let grandTotal = total + percentage;
+
+
+        return {inCart, percentage, grandTotal}
+   },[products, total])
+
+
+
+   const {inCart, percentage, grandTotal} = handleCart()
+
+
 
 
 

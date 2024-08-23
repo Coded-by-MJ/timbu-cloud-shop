@@ -5,7 +5,6 @@ import { productImages } from "../../components/productImages";
 
 const initialState = {
     products: [],
-    inCart: [],
     total: 0,
     isLoading: true,
 }
@@ -64,12 +63,12 @@ const cartSlice = createSlice({
             const cartItem = state.products.find(item => item._id === idNum);
              if (!cartItem) return 
                 cartItem.qtyBought = cartItem.qtyBought + 1; 
-                state.inCart = state.products.filter(item => item.qtyBought > 0);        
+              
             
         },
         clearCart: (state) => {
              state.products.map(item => item.qtyBought = 0);
-             state.inCart = [];        
+            
 
         },
         removeItemFromCart: (state, action) => {
@@ -77,7 +76,7 @@ const cartSlice = createSlice({
               const cartItem = state.products.find(item => item._id === idNum);
               if (!cartItem) return;
               cartItem.qtyBought = 0;
-              state.inCart = state.products.filter(item => item.qtyBought > 0);        
+          
 
         },
         increaseQty: (state, { payload }) => {
@@ -85,7 +84,7 @@ const cartSlice = createSlice({
             const cartItem = state.products.find(item => item._id === idNum);
             if(!cartItem) return;
             cartItem.qtyBought = cartItem.qtyBought + 1
-            state.inCart = state.products.filter(item => item.qtyBought > 0);        
+        
 
 
         },
@@ -96,14 +95,14 @@ const cartSlice = createSlice({
             if(cartItem.qtyBought > 0) {
                cartItem.qtyBought = cartItem.qtyBought - 1
             }
-            state.inCart = state.products.filter(item => item.qtyBought > 0);        
+                 
 
              
         },
         calculateTotal: (state) => {
             let total = 0;
 
-            state.inCart.forEach((item => {
+            state.products.forEach((item => {
                  total += item.qtyBought * item.price;
             }))
 

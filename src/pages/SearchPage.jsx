@@ -1,5 +1,5 @@
 import BreadCrumbs from "../components/BreadCrumbs"
-import { useEffect, useState, memo } from "react"
+import { memo, useCallback } from "react"
 
 import NewsLetter from "../components/NewsLetter"
 import { BrandImages, PromoImages } from "../components/PromoImages"
@@ -11,19 +11,25 @@ import ProductCard from "../components/ProductCard"
 
 const SearchPage = ({ query }) => {
 
-    const [queryMatch, setQueryMatch] = useState([])
     const { products } = useSelector((store) => store.cart)
 
-    useEffect(() => {
-       const handleFindMatch = () => {
+
+    const handleFindMatch = useCallback(() => {
         const productsMatch = products.filter(product => 
           product.name.match(new RegExp(query, 'i'))
         );
-          setQueryMatch(productsMatch)
-        }
-
-        handleFindMatch()
+      
+        return productsMatch
+  
     }, [products, query])
+
+
+
+    const queryMatch = handleFindMatch()
+
+
+
+
 
 
   return (

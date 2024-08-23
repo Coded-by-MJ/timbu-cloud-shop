@@ -1,4 +1,4 @@
-import { useRef, useState } from "react"
+import { useRef, useState, useCallback } from "react"
 import BreadCrumbs from "../components/BreadCrumbs"
 import NewsLetter from "../components/NewsLetter"
 import DeliveryForm from "../components/DeliveryForm"
@@ -10,12 +10,30 @@ import { showSuccessModal } from "../features/actions/actionsSlice"
 
 const CheckoutPage = () => {
 
-  const { inCart, total  } = useSelector((store) => store.cart)
+  
+  const { total, products  } = useSelector((store) => store.cart)
   const dispatch = useDispatch()
 
 
-  let percentage = (total * 10) / 100;
-  let grandTotal = total + percentage;
+
+
+
+  
+  const handleCheckout = useCallback(() => {
+    const inCart = products.filter(item => item.qtyBought > 0)
+    let percentage = (total * 10) / 100;
+    let grandTotal = total + percentage;
+
+    return {inCart, grandTotal, percentage}
+},[products, total])
+
+
+
+const {inCart, grandTotal, percentage} = handleCheckout()
+
+
+
+
 
 
    const [formData, setFormData] = useState({

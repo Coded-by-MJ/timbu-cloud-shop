@@ -5,7 +5,7 @@ import image from "../assets/topbg.png"
 import { useSelector, useDispatch } from "react-redux"
 import { toggleIsOpen } from "../features/actions/actionsSlice"
 import { usePathName } from "../hooks/usePathName"
-
+import { useCallback } from "react"
 
 
 
@@ -66,11 +66,23 @@ const MobileNavBar = ({title}) => {
 const NavBar = () => {
 
   const { currentPathName } = usePathName()
-  const { inCart } = useSelector((store) => store.cart)
-  
+  const { products } = useSelector((store) => store.cart)
 
   const dispatch = useDispatch()
 
+
+
+
+   
+   const getInCart = useCallback(() => {
+    const newCart = products.filter(item => item.qtyBought > 0)
+    return newCart
+
+      },[products])
+
+
+
+      const inCart = getInCart()
 
 
    
