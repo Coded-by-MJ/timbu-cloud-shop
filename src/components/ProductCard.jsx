@@ -42,7 +42,9 @@ const ProductCard = ({_id, qtyBought, price, imagePath, name, description}) => {
   },[_id, name, dispatch, qtyBought])
 
 
+  let render = 0
 
+  console.log('render numbers', render += 1)
 
 
 
