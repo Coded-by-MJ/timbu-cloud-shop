@@ -1,0 +1,24 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+@layer utilities{
+
+
+    /* Hide the number input spinners 413px */ 
+    .hide-spinner::-webkit-inner-spin-button,
+    .hide-spinner::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    .hide-spinner {
+      -moz-appearance: textfield; /* Hide spinner in Firefox */
+    }
+
+
+
+
+}
