@@ -29,6 +29,9 @@ const CheckoutPage = () => {
 
 
 
+
+
+
 const {inCart, grandTotal, percentage} = handleCheckout()
 
 

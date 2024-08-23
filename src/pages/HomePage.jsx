@@ -3,9 +3,7 @@ import NewsLetter from "../components/NewsLetter"
 import SearchPage from "./SearchPage"
 import { useSearch } from "@tanstack/react-router"
 import ProductCard from "../components/ProductCard"
-import { useEffect } from "react"
-import { useDispatch, useSelector } from "react-redux"
-import { hideSuccessModal } from "../features/actions/actionsSlice"
+import { useSelector } from "react-redux"
 import Spinner from "../components/Spinner"
 import { BrandImages, PromoImages } from "../components/PromoImages"
 
@@ -13,13 +11,8 @@ import { BrandImages, PromoImages } from "../components/PromoImages"
 const HomePage = () => {
 
   const search = useSearch({strict: false}); 
-  const dispatch = useDispatch()
   const { products, isLoading } = useSelector((store) => store.cart)
 
-
-  useEffect(() => {
-       dispatch(hideSuccessModal())
-  },[])
   
 
   // Access the query parameters

@@ -1,6 +1,28 @@
-import { Link } from "@tanstack/react-router"
+import { useNavigate } from "@tanstack/react-router"
+import { hideSuccessModal } from "../features/actions/actionsSlice"
+import { useDispatch } from "react-redux"
 
 const SuccessModal = () => {
+
+const dispatch = useDispatch()
+const navigate = useNavigate()
+
+
+const handleSuccess = () => {
+    dispatch(hideSuccessModal())
+    navigate({
+      to: "/",
+    })
+
+}
+
+
+
+
+
+
+
+
   return (
     <div className={`animate-alertIn -translate-y-[100%] -translate-x-1/2 w-full opacity-0 transition-all flex  fixed justify-center top-0 left-1/2 min-h-full bg-transparent`}>
     <div className={` flex items-center justify-center p-6 w-[335px] h-[230px] mt-36 bg-white rounded-md`}>
@@ -26,9 +48,9 @@ const SuccessModal = () => {
 
                        
                    </div>
-                   <Link to={'/'} className="w-full h-[41px] text-white text-sm bg-black flex justify-center gap-2 items-center">                     
+                   <button onClick={handleSuccess} className="w-full h-[41px] text-white text-sm bg-black flex justify-center gap-2 items-center">                     
                       Back to Store
-                   </Link>
+                   </button>
              </div>
           
     </div>
