@@ -11,24 +11,23 @@ const CartPage = () => {
 
 
    const dispatch = useDispatch()
-   const { total, products  } = useSelector((store) => store.cart)
+   const { total, inCart  } = useSelector((store) => store.cart)
 
 
 
 
 
     const handleCart = useCallback(() => {
-        const inCart = products.filter(item => item.qtyBought > 0)
          let percentage = (total * 10) / 100;
          let grandTotal = total + percentage;
 
 
-        return {inCart, percentage, grandTotal}
-   },[products, total])
+        return {percentage, grandTotal}
+   },[total])
 
 
 
-   const {inCart, percentage, grandTotal} = handleCart()
+   const {percentage, grandTotal} = handleCart()
 
 
 
@@ -72,8 +71,8 @@ const CartPage = () => {
                         {/*cart card*/}
                            <div className="scrollbar-thin scrollbar-track-[#B2B7C2] scrollbar-thumb-navy gap-6 divide-y-[1px] divide-[#B2B7C2] py-2 flex flex-col w-full max-h-[800px] overflow-y-auto">
                                  {
-                                       inCart.map((item, idx) => (
-                                          <CartCard  key={idx} {...item} />
+                                       inCart.map((item) => (
+                                          <CartCard  key={item._id} {...item} />
                                        ))
                                  }
                            </div>

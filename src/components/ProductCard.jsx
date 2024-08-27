@@ -1,8 +1,8 @@
-import { addToCart, removeItemFromCart } from "../features/cart/cartSlice"
+import { addToCart, removeItemFromCart, decreaseQty, increaseQty } from "../features/cart/cartSlice"
 import { alertShow } from "../features/actions/actionsSlice"
 import MobileAddToCart from "./MobileAddToCart"
-import QtyControl from "./QtyControl"
 import RemoveFromCartIcon from "./RemoveFromCartIcon"
+
 import { useDispatch } from "react-redux"
 import { memo, useCallback } from "react"
 
@@ -19,13 +19,13 @@ const ProductCard = ({_id, qtyBought, price, imagePath, name, description}) => {
     dispatch(addToCart(_id))
     dispatch(alertShow(`${name} has been added to cart`))
 
-  },[_id, name])  
+  },[_id, name, dispatch])  
   
   const handleRemoveCartItem = useCallback(() => {
     dispatch(removeItemFromCart(_id))
     dispatch(alertShow(`${name} has been removed from cart`))
 
-  },[_id, name])
+  },[_id, name, dispatch])
 
  const handleAddToCartMobile = useCallback(() => {
     if(qtyBought > 0) {
@@ -36,7 +36,17 @@ const ProductCard = ({_id, qtyBought, price, imagePath, name, description}) => {
       dispatch(alertShow(`${name} has been added to cart`))
     }
     
-  },[_id, name, qtyBought])
+  },[_id, name, qtyBought, dispatch])
+
+
+
+  const handleDecreaseQty = useCallback(() => {
+    dispatch(decreaseQty(_id))
+  },[_id, dispatch]) 
+  
+  const handleIncreaseQty = useCallback(() => {
+    dispatch(increaseQty(_id))
+  },[_id, dispatch])
 
 
 
@@ -75,7 +85,23 @@ const ProductCard = ({_id, qtyBought, price, imagePath, name, description}) => {
                          :  (
                             <div className="hidden md:flex flex-col gap-[4px]">
                                 <RemoveFromCartIcon onClick={handleRemoveCartItem}  />
-                                  <QtyControl id={_id} qtyBought={qtyBought} />
+                                <div className="flex cursor-pointer w-[106px] items-center bg-white h-10 p-[4px] gap-1.5">
+                                              <button 
+                                                onClick={handleDecreaseQty}
+                                                disabled={qtyBought === 1}
+                                              className="text-md size-6 bg-transparent text-navy disabled:text-[#CACDD5] flex justify-center items-center">
+                                                  -
+                                              </button>
+                                                <span className="flex bg-transparent w-[38px] h-[20px] justify-center items-center text-sm">
+                                                    {qtyBought}
+                                                </span>
+                                              <button 
+                                              onClick={handleIncreaseQty}
+                                              className="text-md size-6 bg-transparent text-navy flex justify-center items-center">
+                                                  +
+                                              </button> 
+
+                                   </div>
                            </div>
                           )
 
@@ -89,5 +115,8 @@ const ProductCard = ({_id, qtyBought, price, imagePath, name, description}) => {
     </div>
   )
 }
+
+
+
 
 export default memo(ProductCard)

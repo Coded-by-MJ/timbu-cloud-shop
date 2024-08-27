@@ -13,13 +13,14 @@ const HomePage = () => {
   const search = useSearch({strict: false}); 
   const { products, isLoading } = useSelector((store) => store.cart)
 
+
   
 
   // Access the query parameters
 
-  if (search.search) {
-    return <SearchPage query={search.search} />;
-  }
+  // if (search.search) {
+  //   return <SearchPage query={search.search} />;
+  // }
 
 
 
@@ -56,8 +57,8 @@ const HomePage = () => {
                 : (
                           <div className={` grid-cols-auto-mobile md:grid-cols-auto-desktop justify-center grid w-full gap-[24px]`}>
                           {
-                            products.map((product, index) => (
-                                <ProductCard key={index} {...product} />
+                            products.map((product) => (
+                                <ProductCard key={product._id} {...product} />
                             ))
                           }
                        </div>

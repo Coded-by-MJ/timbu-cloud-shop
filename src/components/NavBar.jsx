@@ -66,7 +66,7 @@ const MobileNavBar = ({title}) => {
 const NavBar = () => {
 
   const { currentPathName } = usePathName()
-  const { products } = useSelector((store) => store.cart)
+  const { inCart } = useSelector((store) => store.cart)
 
   const dispatch = useDispatch()
 
@@ -74,15 +74,15 @@ const NavBar = () => {
 
 
    
-   const getInCart = useCallback(() => {
-    const newCart = products.filter(item => item.qtyBought > 0)
-    return newCart
+  //  const getInCart = useCallback(() => {
+  //   const newCart = products.filter(item => item.qtyBought > 0)
+  //   return newCart
 
-      },[products])
+  //     },[products])
 
 
 
-      const inCart = getInCart()
+  //     const inCart = getInCart()
 
 
    

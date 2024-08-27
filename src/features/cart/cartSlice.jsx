@@ -5,6 +5,7 @@ import { productImages } from "../../components/productImages";
 
 const initialState = {
     products: [],
+    inCart: [],
     total: 0,
     isLoading: true,
 }
@@ -62,8 +63,10 @@ const cartSlice = createSlice({
   
             const idNum = action.payload;
             const cartItem = state.products.find(item => item._id === idNum);
-             if (!cartItem) return 
-                cartItem.qtyBought = cartItem.qtyBought + 1;    
+             if (cartItem) {
+              cartItem.qtyBought = cartItem.qtyBought + 1;    
+             } 
+                
             
         },
         clearCart: (state) => {
@@ -74,16 +77,20 @@ const cartSlice = createSlice({
         removeItemFromCart: (state, action) => {
               const idNum = action.payload;
               const cartItem = state.products.find(item => item._id === idNum);
-              if (!cartItem) return;
-              cartItem.qtyBought = 0;
+              if (cartItem) {
+                cartItem.qtyBought = 0;
+              };
+             
           
 
         },
         increaseQty: (state, { payload }) => {
             const idNum = payload;
             const cartItem = state.products.find(item => item._id === idNum);
-            if(!cartItem) return;
-            cartItem.qtyBought = cartItem.qtyBought + 1
+            if(cartItem) {
+              cartItem.qtyBought = cartItem.qtyBought + 1
+            };
+          
         
 
 
@@ -99,13 +106,13 @@ const cartSlice = createSlice({
 
              
         },
-        calculateTotal: (state) => {
+        updateCartAndTotal: (state) => {
             let total = 0;
-
             state.products.forEach((item => {
                  total += item.qtyBought * item.price;
             }))
 
+            state.inCart = state.products.filter(item => item.qtyBought > 0)
             state.total = total;
 
         },
@@ -128,6 +135,6 @@ const cartSlice = createSlice({
 })
 
 
-export const {addToCart, clearCart, increaseQty, decreaseQty, removeItemFromCart, calculateTotal } = cartSlice.actions;
+export const {addToCart, clearCart, increaseQty, decreaseQty, removeItemFromCart, updateCartAndTotal } = cartSlice.actions;
 
 export default cartSlice.reducer

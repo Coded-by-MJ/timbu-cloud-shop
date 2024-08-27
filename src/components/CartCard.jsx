@@ -1,7 +1,6 @@
-import QtyControl from "./QtyControl"
 import RemoveFromCartIcon from "./RemoveFromCartIcon"
 import { useDispatch } from "react-redux"
-import { removeItemFromCart } from "../features/cart/cartSlice"
+import { removeItemFromCart, decreaseQty, increaseQty } from "../features/cart/cartSlice"
 import { alertShow } from "../features/actions/actionsSlice"
 import { memo, useCallback } from "react"
 
@@ -15,6 +14,16 @@ const CartCard = ({qtyBought, _id, name, imagePath, price}) => {
     dispatch(alertShow(`${name} has been removed from cart`))
 
   },[_id, name])
+
+
+  const handleDecreaseQty = useCallback(() => {
+    dispatch(decreaseQty(_id))
+  },[_id]) 
+  
+  const handleIncreaseQty = useCallback(() => {
+    dispatch(increaseQty(_id))
+  },[_id])
+
 
 
 
@@ -33,7 +42,22 @@ const CartCard = ({qtyBought, _id, name, imagePath, price}) => {
              </div>
                
                 <div className="flex justify-between">
-                     <QtyControl  qtyBought={qtyBought} id={_id} />
+                       <div className="flex cursor-pointer w-[106px] items-center bg-white h-10 p-[4px] gap-1.5">
+                            <button 
+                              onClick={handleDecreaseQty}
+                              disabled={qtyBought === 1}
+                               className="text-md size-6 bg-transparent text-navy disabled:text-[#CACDD5] flex justify-center items-center">
+                                -
+                            </button>
+                              <span className="flex bg-transparent w-[38px] h-[20px] justify-center items-center text-sm">
+                                  {qtyBought}
+                              </span>
+                            <button 
+                            onClick={handleIncreaseQty}
+                            className="text-md size-6 bg-transparent text-navy flex justify-center items-center">
+                                +
+                            </button> 
+                        </div>
                      <RemoveFromCartIcon onClick={handleRemoveCartItem} />
                 </div>
           </div>

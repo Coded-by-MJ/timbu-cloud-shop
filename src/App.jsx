@@ -12,7 +12,7 @@ import CheckoutPage from "./pages/CheckoutPage"
 import { useEffect } from "react"
 import { getProducts } from "./features/cart/cartSlice"
 import { useSelector, useDispatch } from "react-redux"
-import { calculateTotal } from "./features/cart/cartSlice"
+import { updateCartAndTotal } from "./features/cart/cartSlice"
 
 
 
@@ -80,7 +80,7 @@ function App() {
 
   
   useEffect(() => {
-    dispatch(calculateTotal())
+    dispatch(updateCartAndTotal())
  },[products])
 
 

@@ -11,7 +11,7 @@ import { showSuccessModal } from "../features/actions/actionsSlice"
 const CheckoutPage = () => {
 
   
-  const { total, products  } = useSelector((store) => store.cart)
+  const { total, inCart  } = useSelector((store) => store.cart)
   const dispatch = useDispatch()
 
 
@@ -20,19 +20,18 @@ const CheckoutPage = () => {
 
   
   const handleCheckout = useCallback(() => {
-    const inCart = products.filter(item => item.qtyBought > 0)
     let percentage = (total * 10) / 100;
     let grandTotal = total + percentage;
 
-    return {inCart, grandTotal, percentage}
-},[products, total])
+    return {grandTotal, percentage}
+},[total])
 
 
 
 
 
 
-const {inCart, grandTotal, percentage} = handleCheckout()
+const {grandTotal, percentage} = handleCheckout()
 
 
 
