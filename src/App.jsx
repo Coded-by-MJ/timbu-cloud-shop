@@ -9,15 +9,11 @@ import NotFoundPage from "./pages/NotFoundPage"
 import HomePage from "./pages/HomePage"
 import CartPage from "./pages/CartPage"
 import CheckoutPage from "./pages/CheckoutPage"
-import { useEffect } from "react"
-import { getProducts } from "./features/cart/cartSlice"
-import { useSelector, useDispatch } from "react-redux"
-import { updateCartAndTotal } from "./features/cart/cartSlice"
-
-
 
 
 function App() {
+
+
  
   const rootRoute = createRootRoute({
      component: MainLayout,
@@ -39,11 +35,6 @@ function App() {
     component: CheckoutPage
   })  
   
-  
-
-
-
-
 
 
   const routeTree = rootRoute.addChildren([
@@ -53,36 +44,9 @@ function App() {
 
 
 
-
-
   const router = createRouter({ routeTree,
     defaultNotFoundComponent: NotFoundPage
   })
-
-
-  const { products } = useSelector((store) => store.cart)
-  const dispatch = useDispatch()
-
-  useEffect(() => {
-    const cacheProducts = async () => {
-      if(products.length > 1){
-            await  new Promise((resolve) => setTimeout(resolve, 10 * 60 * 1000))
-            dispatch(getProducts())
-        
-     }else{
-       dispatch(getProducts())
-     }
-    }
-
-    cacheProducts()
-  },[products.length])
-
-
-  
-  useEffect(() => {
-    dispatch(updateCartAndTotal())
- },[products])
-
 
 
 

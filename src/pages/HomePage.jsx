@@ -8,9 +8,12 @@ import Spinner from "../components/Spinner"
 import { BrandImages, PromoImages } from "../components/PromoImages"
 
 
+
+
 const HomePage = () => {
 
-  const search = useSearch({strict: false}); 
+  // const search = useSearch({strict: false}); 
+
   const { products, isLoading } = useSelector((store) => store.cart)
 
 
@@ -21,6 +24,10 @@ const HomePage = () => {
   // if (search.search) {
   //   return <SearchPage query={search.search} />;
   // }
+
+
+
+
 
 
 

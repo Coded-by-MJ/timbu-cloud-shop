@@ -5,7 +5,8 @@ import image from "../assets/topbg.png"
 import { useSelector, useDispatch } from "react-redux"
 import { toggleIsOpen } from "../features/actions/actionsSlice"
 import { usePathName } from "../hooks/usePathName"
-import { useCallback } from "react"
+import { useEffect} from "react"
+import { updateCartAndTotal, getProducts } from "../features/cart/cartSlice"
 
 
 
@@ -15,6 +16,8 @@ const MobileNavBar = ({title}) => {
   const { isOpen } = useSelector((store) => store.actions)
 
   const dispatch = useDispatch()
+
+
 
 
 
@@ -66,28 +69,36 @@ const MobileNavBar = ({title}) => {
 const NavBar = () => {
 
   const { currentPathName } = usePathName()
-  const { inCart } = useSelector((store) => store.cart)
+  const { inCart, products } = useSelector((store) => store.cart)
 
   const dispatch = useDispatch()
 
 
 
+  useEffect(() => {
+    const cacheProducts = async () => {
+      if(products.length > 0){
+            await  new Promise((resolve) => setTimeout(resolve, 1000 * 60 * 10))
+            dispatch(getProducts())
+        
+     }else{
+       dispatch(getProducts())
+     }
+    }
 
-   
-  //  const getInCart = useCallback(() => {
-  //   const newCart = products.filter(item => item.qtyBought > 0)
-  //   return newCart
-
-  //     },[products])
+    cacheProducts()
+  },[products.length])
 
 
 
-  //     const inCart = getInCart()
 
 
-   
 
- 
+  useEffect(() => {
+    dispatch(updateCartAndTotal())
+ },[products])
+
+
 
 
 

@@ -12,20 +12,13 @@ const ProductCard = ({_id, qtyBought, price, imagePath, name, description}) => {
    const dispatch = useDispatch()
 
 
-  
 
-
-  const handleAddToCart = useCallback(() => {
+  const handleAddToCart = () => {
     dispatch(addToCart(_id))
     dispatch(alertShow(`${name} has been added to cart`))
 
-  },[_id, name, dispatch])  
-  
-  const handleRemoveCartItem = useCallback(() => {
-    dispatch(removeItemFromCart(_id))
-    dispatch(alertShow(`${name} has been removed from cart`))
+  }
 
-  },[_id, name, dispatch])
 
  const handleAddToCartMobile = useCallback(() => {
     if(qtyBought > 0) {
@@ -36,17 +29,22 @@ const ProductCard = ({_id, qtyBought, price, imagePath, name, description}) => {
       dispatch(alertShow(`${name} has been added to cart`))
     }
     
-  },[_id, name, qtyBought, dispatch])
+  },[_id, name, qtyBought])
+
+  const handleRemoveCartItem = useCallback(() => {
+    dispatch(removeItemFromCart(_id))
+    dispatch(alertShow(`${name} has been removed from cart`))
+
+  },[_id, name])
 
 
-
-  const handleDecreaseQty = useCallback(() => {
+  const handleDecreaseQty = () => {
     dispatch(decreaseQty(_id))
-  },[_id, dispatch]) 
+  }
   
-  const handleIncreaseQty = useCallback(() => {
+  const handleIncreaseQty = () => {
     dispatch(increaseQty(_id))
-  },[_id, dispatch])
+  }
 
 
 

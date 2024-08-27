@@ -6,7 +6,6 @@ import { showRemoveAllModal } from "../features/actions/actionsSlice"
 import { useDispatch, useSelector } from "react-redux"
 import { useCallback } from "react"
 
-
 const CartPage = () => {
 
 
@@ -14,7 +13,7 @@ const CartPage = () => {
    const { total, inCart  } = useSelector((store) => store.cart)
 
 
-
+  
 
 
     const handleCart = useCallback(() => {
