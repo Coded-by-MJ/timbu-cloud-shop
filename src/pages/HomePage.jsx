@@ -12,18 +12,17 @@ import { BrandImages, PromoImages } from "../components/PromoImages"
 
 const HomePage = () => {
 
-  // const search = useSearch({strict: false}); 
+  const search = useSearch({strict: false}); 
 
   const { products, isLoading } = useSelector((store) => store.cart)
 
 
   
 
-  // Access the query parameters
 
-  // if (search.search) {
-  //   return <SearchPage query={search.search} />;
-  // }
+  if (search.search) {
+    return <SearchPage query={search.search} />;
+  }
 
 
 
